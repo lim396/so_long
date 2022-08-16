@@ -147,7 +147,13 @@ bool	is_complete_game(char	**map)
 //	printf("collect %d\n", data->collectible);
 //	printf("exit %d\n", data->exit_flag);
 	if ((data->exit_flag == 1) && (all_collectibles == data->collectible))
+	{
+		free(data);
+		free(branch_pos);
 		return (1);
+	}
+	free(data);
+	free(branch_pos);
 	return (0);
 }
 
