@@ -3,7 +3,7 @@
 int	count_directions_can_go(char **map, t_check_item *data)
 {
 	int	count;
-	
+
 	count = 0;
 	if (map[data->y - 1][data->x] != '1')
 		count++;
@@ -18,19 +18,14 @@ int	count_directions_can_go(char **map, t_check_item *data)
 
 int	save_branch_point(t_check_item *data, t_stack *branch_p, char **map)
 {
-//	t_stack	*head;
 	int		count;
-//	if (c == '1')
-//	{
+
 	count = count_directions_can_go(map, data);
-//	if (count > 1)
 	while (count-- > 1)
 	{
-		
 		if (push(branch_p, data) == -1)
 			stack_error_handle(data, branch_p, map);
 	}
-//	}
 	return (0);
 }
 
@@ -39,7 +34,7 @@ void	check_item(char map, t_check_item *data)
 	if (map == 'E')
 		data->exit_flag = 1;
 	if (map == 'C')
-		data->collectible += 1;	
+		data->collectible += 1;
 }
 
 void	warp_branch_point(t_check_item *data, t_stack *branch_pos)

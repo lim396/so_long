@@ -42,48 +42,45 @@ char	**read_map(char *map_file)
 	return (map_2d);
 }
 
+void	print_extension_error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("\e[1;31m===Error===\e[0m\n", 2);
+	ft_putstr_fd("This file is invalid extension,", 2);
+	ft_putstr_fd("\nPlease read the file with extension .ber\n", 2);
+}
 
+void	print_map_error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("\e[1;31m===Error===\e[0m\n", 2);
+	ft_putstr_fd("This is invalid map, please read valid map\n", 2);
+}
 
 int	main(int argc, char **argv)
 {
-	char **map;
-//	int	i;
+	char	**map;
 	t_data	sys_info;
 
 	if (argc != 2)
 		exit(1);
-//	i = 0;
 	if (!check_extension(argv[1]))
 	{
-		ft_putstr_fd("\e[1;31m===Error===\e[0m\n", 2);
-		ft_putstr_fd("This file is invalid extension,", 2);
-		ft_putstr_fd("\nPlease read the file with extension .ber\n", 2);
-//		printf("\e[1;31m===Error===\e[0m\nThis file is invalid extension,\nPlease read the file with extension .ber\n");
+		print_extension_error();
 		exit(1);
 	}
 	map = read_map(argv[1]);
 	if (!check_map(map))
 	{
-//		while (map[i])
-//			free(map[i++]);
-//		free(map);
 		free_map(map);
-		ft_putstr_fd("\e[1;31m===Error===\e[0m\n", 2);
-		ft_putstr_fd("This is invalid map, please read valid map\n", 2);
-//		printf("\e[1;31m===Error===\e[0m\nThis is invalid map, please read valid map\n");
+		print_map_error();
 		exit(1);
 	}
-//	while (map[i])
-//		free(map[i++]);
-//	free(map);
 	free_map(map);
 	sys_info.map = read_map(argv[1]);
-	init_sys_data(&sys_info);
+	init_sys_info(&sys_info);
 	draw_map(&sys_info);
-	ft_putstr_fd("move_count: \n", 1);
-	ft_putnbr_fd(sys_info.p_status.moves_count, 1);
-	ft_putstr_fd("\n", 1);
-//	printf("%move_count: %d\n",sys_info.p_status.moves_count);
+	print_moves_count(&sys_info);
 	event_hook(&sys_info);
 	mlx_loop(sys_info.graphic.mlx);
 	return (0);

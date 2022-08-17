@@ -2,7 +2,8 @@
 
 bool	is_move(char **map, t_check_item *data)
 {
-	return ((map[data->y][data->x + 1] != '1') || (map[data->y][data->x - 1] != '1') 
+	return ((map[data->y][data->x + 1] != '1')
+			|| (map[data->y][data->x - 1] != '1')
 			|| (map[data->y + 1][data->x] != '1')
 			|| (map[data->y - 1][data->x] != '1'));
 }
@@ -11,7 +12,7 @@ void	get_start_status(char **map, t_check_item *data, int *all_collect)
 {
 	int	i;
 	int	j;
-	
+
 	data->collectible = 0;
 	data->exit_flag = 0;
 	i = 0;
@@ -36,11 +37,20 @@ void	get_start_status(char **map, t_check_item *data, int *all_collect)
 int	measure_map_height(char **map)
 {
 	int	i;
-	
+
 	i = 0;
 	while (map[i])
 		i++;
 	return (i);
+}
+
+void	back_to_branch_point(char **map, t_check_item *data, t_stack *stack)
+{
+	if (!is_move(map, data) && stack->next != NULL)
+	{
+		map[data->y][data->x] = '1';
+		warp_branch_point(data, stack);
+	}
 }
 
 bool	is_count_elem(char map_elem, int *p_count, int *e_count, int *c_count)
@@ -55,5 +65,5 @@ bool	is_count_elem(char map_elem, int *p_count, int *e_count, int *c_count)
 		;
 	else
 		return (false);
-	return (true);	
+	return (true);
 }

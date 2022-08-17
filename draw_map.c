@@ -13,15 +13,8 @@ void	draw_to_window(void *img, t_data *sys_info, int y, int x)
 
 void	draw_and_now_pos(t_data *sys_info, int y, int x)
 {
-//	int	real_x;
-//	int	real_y;
-
-//	real_x = x * IMG_SIZE;
-//	real_y = y * IMG_SIZE;
-//	mlx_put_image_to_window
-//		(sys_info->graphic.mlx, sys_info->graphic.win, img, real_x, real_y);
 	void	*img;
-	
+
 	img = sys_info->graphic.player_img;
 	if (sys_info->exit_y == y && sys_info->exit_x == x)
 		img = sys_info->graphic.overlap_img;
@@ -43,7 +36,6 @@ int	draw_map(t_data *sys_info)
 		{
 			if (sys_info->map[i][j] == 'P')
 				draw_and_now_pos(sys_info, i, j);
-//				draw_and_now_pos(sys_info->graphic.player_img, sys_info, i, j);
 			if (sys_info->map[i][j] == 'E')
 				draw_to_window(sys_info->graphic.exit_img, sys_info, i, j);
 			if (sys_info->map[i][j] == 'C')

@@ -1,16 +1,16 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdio.h>
-#include <assert.h>
-#include "libft/libft.h"
-#include "get_next_line.h"
+# include <stdlib.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <stdio.h>
+# include <assert.h>
+# include "libft/libft.h"
+# include "get_next_line.h"
 //#include "mlx.h"
-#include "./minilibx-linux/mlx.h"
+# include "./minilibx-linux/mlx.h"
 
 # define KEY_PRESS 2
 # define EXPOSE 12
@@ -44,19 +44,19 @@ struct s_graphic
 	void	*overlap_img;
 };
 
-typedef struct s_status	t_status;
+typedef struct s_status		t_status;
 struct s_status
 {
-	int	x; //pos
-	int	y; //pos
+	int	x;
+	int	y;
 	int	moves_count;
 	int	collected;
 };
 
-typedef struct s_data	t_data;
+typedef struct s_data		t_data;
 struct s_data
 {
-	t_graphic	graphic; //within map?
+	t_graphic	graphic;
 	t_status	p_status;
 	char		**map;
 	int			all_collectibles;
@@ -65,7 +65,7 @@ struct s_data
 	int			exit_y;
 };
 
-typedef struct s_stack	t_stack;
+typedef struct s_stack		t_stack;
 struct s_stack
 {
 	t_stack	*next;
@@ -73,7 +73,7 @@ struct s_stack
 	int		branch_y;
 };
 
-typedef struct s_check_item t_check_item;
+typedef struct s_check_item	t_check_item;
 struct s_check_item
 {
 	int		x;
@@ -88,7 +88,6 @@ char	**read_map(char *map_file);
 //check_extension
 bool	check_extension(char *file_name);
 
-
 //check_map_rule
 bool	is_surrounded_wall(char **map);
 bool	is_rerectangle(char **map);
@@ -100,6 +99,7 @@ bool	check_map(char **map);
 bool	is_move(char **map, t_check_item *data);
 void	get_start_status(char **map, t_check_item *data, int *all_collect);
 int		measure_map_height(char **map);
+void	back_to_branch_point(char **map, t_check_item *data, t_stack *stack);
 bool	is_count_elem(char map_elem, int *p_count, int *e_count, int *c_count);
 
 //stack
@@ -110,7 +110,7 @@ void	pop(t_stack *stack);
 
 //tansaku zi syori
 int		countdirections_can_go(char **map, t_check_item *data);
-int		save_branch_point(t_check_item *data, t_stack *branch_p, char **map); //rename
+int		save_branch_point(t_check_item *data, t_stack *branch_p, char **map);
 void	check_item(char map, t_check_item *data);
 void	warp_branch_point(t_check_item *data, t_stack *branch_pos);
 
@@ -119,7 +119,7 @@ void	move_up(char **map, t_check_item *data, t_stack *branch_pos);
 void	move_down(char **map, t_check_item *data, t_stack *branch_pos);
 void	move_left(char **map, t_check_item *data, t_stack *branch_pos);
 void	move_right(char **map, t_check_item *data, t_stack *branch_pos);
-
+void	map_move(char **map, t_check_item *data, t_stack *branch_pos);
 
 //event
 void	event_hook(t_data *sys_info);
@@ -131,7 +131,7 @@ void	init_graphic(t_data *sys_info, int win_width, int win_height);
 void	init_player_status(t_data *sys_info);
 int		get_total_collect(char **map);
 void	get_exit_pos(t_data *sys_info);
-void	init_sys_data(t_data *sys_info);
+void	init_sys_info(t_data *sys_info);
 
 //draw_map
 void	draw_to_window(void *img, t_data *sys_info, int y, int x);
@@ -140,9 +140,9 @@ int		draw_map(t_data *sys_info);
 
 //move_player
 void	swap_pos(char next_pos_elem, int next_y, int next_x, t_data *sys_info);
+void	print_moves_count(t_data *sys_info);
 void	update_player_status(char next_pos_elem, t_data *sys_info);
 void	move_player(int y, int x, t_data *sys_info);
-
 
 void	free_map(char **map);
 void	destroy_mlx(t_data *sys_info);

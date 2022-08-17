@@ -46,7 +46,7 @@ int	get_total_collect(char **map)
 
 void	init_graphic(t_data *sys_info, int win_width, int win_height)
 {
-	int img_width;
+	int	img_width;
 	int	img_height;
 
 	sys_info->graphic.win = mlx_new_window
@@ -60,7 +60,7 @@ void	init_graphic(t_data *sys_info, int win_width, int win_height)
 	sys_info->graphic.exit_img = mlx_xpm_file_to_image
 		(sys_info->graphic.mlx, EXIT_IMG, &img_width, &img_height);
 	sys_info->graphic.collect_img = mlx_xpm_file_to_image
-		(sys_info->graphic.mlx, COLLECT_IMG, &img_width, &img_height);	
+		(sys_info->graphic.mlx, COLLECT_IMG, &img_width, &img_height);
 	sys_info->graphic.overlap_img = mlx_xpm_file_to_image
 		(sys_info->graphic.mlx, OVERLAP_IMG, &img_width, &img_height);
 	if (!sys_info->graphic.win || !sys_info->graphic.wall_img
@@ -78,7 +78,7 @@ void	init_player_status(t_data *sys_info)
 	sys_info->p_status.moves_count = 0;
 }
 
-void	init_sys_data(t_data *sys_info)
+void	init_sys_info(t_data *sys_info)
 {
 	int	win_width;
 	int	win_height;
