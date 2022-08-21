@@ -85,10 +85,8 @@ bool	is_complete_game(char	**map)
 	bool			ret_flag;
 
 	data = (t_check_item *)malloc(sizeof(t_check_item));
-	if (data == NULL)
-		return (false);
 	branch_pos = new_sentinel();
-	if (branch_pos == NULL)
+	if (branch_pos == NULL || data == NULL)
 		stack_error_handle(data, branch_pos, map);
 	all_collectibles = 0;
 	get_start_status(map, data, &all_collectibles);
