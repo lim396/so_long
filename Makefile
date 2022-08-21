@@ -1,38 +1,39 @@
-CC = gcc
-#CFLAGS = -Wall -Wextra -Werror -L/usr/X11R6/lib -lmlx -lX11 -lXext -framework OpenGL -framework AppKit #-framework OpenGL -framework Appkit
-# -Lmlx necessary?
+CC = gcc 
+CFLAGS = -Wall -Wextra -Werror -g -I /usr/X11/include
 NAME = so_long
 LIBFT = ./libft/libft.a
-#HEADER = ./minilibx-linux/mlx.h
-#MINILIBX = ./minilibx-linux/libmlx.a
+MINILIBX = ./minilibx-linux
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
+
+
+ifeq ($(shell uname), Linux)
+	LDFLAGS := -Wl,-start-group -I/usr/X11/include -L/usr/X11/include/../lib -lXext -lX11 -I minilibx-linux -L minilibx-linux -lmlx_Linux
+	MINILIBX = ./minilibx-linux/libmlx_Linux.a -Wl,-end-group
+else
+	LDFLAGS := -I/usr/X11/include -L/usr/X11/include/../lib -lXext -lX11 -I minilibx-linux -L minilibx-linux -lmlx_Darwin
+	MINILIBX = ./minilibx-linux/libmlx_Darwin.a
+endif
+
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -g -I /opt/X11/include -c $< -o $@ 
-	#-L minilibx-linux
+	$(CC) $(CFLAGS) -c $< -o $@
 
-	#-L /usr/X11/include/../lib 
-	#-l Xext -l X11 -I minilibx-linux -L minilibx-linux -lmlx_Darwin -c $< -o $@
-
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) -g -I /opt/X11/include -L /usr/X11/include/../lib -l Xext -l X11 -I minilibx-linux -L minilibx-linux -lmlx_Darwin -o $(NAME) $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
+	$(CC) $(LDFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MINILIBX) 
 
 $(LIBFT):
 	$(MAKE) -C ./libft
 
-#$(NAME): $(OBJS) $(MINILIBX)
-#	$(CC) $(CFLAGS) -o $@ $(OBJS) $(MINILIBX)
-
-#$(MINILIBX):
-#	$(MAKE) -C ./minilibx-linux
+$(MINILIBX):
+	$(MAKE) -C ./minilibx-linux
 
 clean:
 	$(MAKE) clean -C ./libft
+	$(MAKE) clean -C ./minilibx-linux
 	$(RM) *.o
-#	$(MAKE) clean -C ./minilibx-linux
 
 fclean: clean
 	$(MAKE) fclean -C ./libft
