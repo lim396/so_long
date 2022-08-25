@@ -21,13 +21,12 @@
 # include <assert.h>
 # include "libft/libft.h"
 # include "get_next_line.h"
-//#include "mlx.h"
 # include "./minilibx-linux/mlx.h"
 
 # define KEY_PRESS 2
 # define EXPOSE 12
 # define FOCUSIN 9
-# define DESTROY 17 //33?
+# define DESTROY 17
 
 # define KEY_W 119
 # define KEY_A 97
@@ -117,7 +116,7 @@ bool	is_count_elem(char map_elem, int *p_count, int *e_count, int *c_count);
 //stack
 t_stack	*new_node(t_check_item *data);
 t_stack	*new_sentinel(void);
-int		push(t_stack *stack, t_check_item *data); //change int ?
+int		push(t_stack *stack, t_check_item *data);
 void	pop(t_stack *stack);
 
 //tansaku zi syori
