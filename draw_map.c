@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	draw_to_window(void *img, t_data *sys_info, int y, int x)
+static void	draw_to_window(void *img, t_data *sys_info, int y, int x)
 {
 	int	real_x;
 	int	real_y;
@@ -23,7 +23,7 @@ void	draw_to_window(void *img, t_data *sys_info, int y, int x)
 		(sys_info->graphic.mlx, sys_info->graphic.win, img, real_x, real_y);
 }
 
-void	draw_and_now_pos(t_data *sys_info, int y, int x)
+static void	draw_and_now_pos(t_data *sys_info, int y, int x)
 {
 	void	*img;
 

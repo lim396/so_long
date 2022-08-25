@@ -39,7 +39,7 @@
 # define WALL_IMG "img/wall.xpm"
 # define PLAYER_IMG "img/player.xpm"
 # define EXIT_IMG "img/exit.xpm"
-# define COLLECT_IMG "img/collect.xpm" //"img/orb.xpm"
+# define COLLECT_IMG "img/collect.xpm"
 # define OVERLAP_IMG "img/overlap_exit.xpm"
 
 typedef struct s_graphic	t_graphic;
@@ -100,10 +100,6 @@ char	**read_map(char *map_file);
 bool	check_extension(char *file_name);
 
 //check_map_rule
-bool	is_surrounded_wall(char **map);
-bool	is_rerectangle(char **map);
-bool	is_valid_map_elements(char **map);
-bool	is_complete_game(char **map);
 bool	check_map(char **map);
 
 //check_map_utiles
@@ -114,45 +110,29 @@ void	back_to_branch_point(char **map, t_check_item *data, t_stack *stack);
 bool	is_count_elem(char map_elem, int *p_count, int *e_count, int *c_count);
 
 //stack
-t_stack	*new_node(t_check_item *data);
 t_stack	*new_sentinel(void);
 int		push(t_stack *stack, t_check_item *data);
 void	pop(t_stack *stack);
 
 //tansaku zi syori
-int		countdirections_can_go(char **map, t_check_item *data);
 int		save_branch_point(t_check_item *data, t_stack *branch_p, char **map);
 void	check_item(char map, t_check_item *data);
 void	warp_branch_point(t_check_item *data, t_stack *branch_pos);
 
 //map tansaku
-void	move_up(char **map, t_check_item *data, t_stack *branch_pos);
-void	move_down(char **map, t_check_item *data, t_stack *branch_pos);
-void	move_left(char **map, t_check_item *data, t_stack *branch_pos);
-void	move_right(char **map, t_check_item *data, t_stack *branch_pos);
 void	map_move(char **map, t_check_item *data, t_stack *branch_pos);
 
 //event
 void	event_hook(t_data *sys_info);
-int		proc_press_wasd_esc(int keycode, t_data *sys_info);
-int		quit_game(t_data *sys_info);
 
 //init_data
-void	init_graphic(t_data *sys_info, int win_width, int win_height);
-void	init_player_status(t_data *sys_info);
-int		get_total_collect(char **map);
-void	get_exit_pos(t_data *sys_info);
 void	init_sys_info(t_data *sys_info);
 
 //draw_map
-void	draw_to_window(void *img, t_data *sys_info, int y, int x);
-void	draw_and_now_pos(t_data *sys_info, int y, int x);
 int		draw_map(t_data *sys_info);
 
 //move_player
-void	swap_pos(char next_pos_elem, int next_y, int next_x, t_data *sys_info);
 void	print_moves_count(t_data *sys_info);
-void	update_player_status(char next_pos_elem, t_data *sys_info);
 void	move_player(int y, int x, t_data *sys_info);
 
 void	free_map(char **map);

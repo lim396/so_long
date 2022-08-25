@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-t_stack	*new_node(t_check_item *data)
+static t_stack	*new_node(t_check_item *data)
 {
 	t_stack	*node;
 

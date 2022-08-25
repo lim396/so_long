@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-bool	is_surrounded_wall(char **map)
+static bool	is_surrounded_wall(char **map)
 {
 	int	i;
 	int	map_width;
@@ -37,7 +37,7 @@ bool	is_surrounded_wall(char **map)
 	return (true);
 }
 
-bool	is_rerectangle(char **map)
+static bool	is_rerectangle(char **map)
 {
 	int	i;
 	int	j;
@@ -61,7 +61,7 @@ bool	is_rerectangle(char **map)
 	return (true);
 }
 
-bool	is_valid_map_elements(char **map)
+static bool	is_valid_map_elements(char **map)
 {
 	int	i;
 	int	j;
@@ -89,7 +89,7 @@ bool	is_valid_map_elements(char **map)
 	return (true);
 }
 
-bool	is_complete_game(char	**map)
+static bool	is_complete_game(char	**map)
 {
 	t_stack			*branch_pos;
 	t_check_item	*data;

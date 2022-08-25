@@ -54,7 +54,7 @@ char	**read_map(char *map_file)
 	return (map_2d);
 }
 
-void	print_extension_error(void)
+static void	print_extension_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd("\e[1;31m===Error===\e[0m\n", 2);
@@ -62,7 +62,7 @@ void	print_extension_error(void)
 	ft_putstr_fd("\nPlease read the file with extension .ber\n", 2);
 }
 
-void	print_map_error(void)
+static void	print_map_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd("\e[1;31m===Error===\e[0m\n", 2);

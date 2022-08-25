@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	move_up(char **map, t_check_item *data, t_stack *branch_pos)
+static void	move_up(char **map, t_check_item *data, t_stack *branch_pos)
 {
 	check_item(map[data->y - 1][data->x], data);
 	map[data->y][data->x] = '1';
@@ -25,7 +25,7 @@ void	move_up(char **map, t_check_item *data, t_stack *branch_pos)
 	}
 }
 
-void	move_down(char **map, t_check_item *data, t_stack *branch_pos)
+static void	move_down(char **map, t_check_item *data, t_stack *branch_pos)
 {
 	check_item(map[data->y + 1][data->x], data);
 	map[data->y][data->x] = '1';
@@ -38,7 +38,7 @@ void	move_down(char **map, t_check_item *data, t_stack *branch_pos)
 	}
 }
 
-void	move_left(char **map, t_check_item *data, t_stack *branch_pos)
+static void	move_left(char **map, t_check_item *data, t_stack *branch_pos)
 {
 	check_item(map[data->y][data->x - 1], data);
 	map[data->y][data->x] = '1';
@@ -51,7 +51,7 @@ void	move_left(char **map, t_check_item *data, t_stack *branch_pos)
 	}
 }
 
-void	move_right(char **map, t_check_item *data, t_stack *branch_pos)
+static void	move_right(char **map, t_check_item *data, t_stack *branch_pos)
 {
 	check_item(map[data->y][data->x + 1], data);
 	map[data->y][data->x] = '1';

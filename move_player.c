@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-void	swap_pos(char next_pos_elem, int next_y, int next_x, t_data *sys_info)
+static void	swap_pos(char next_elem, int next_y, int next_x, t_data *sys_info)
 {
-	sys_info->map[next_y][next_x] = next_pos_elem;
+	sys_info->map[next_y][next_x] = next_elem;
 	sys_info->map[sys_info->p_status.y][sys_info->p_status.x] = '0';
 	if (sys_info->p_status.y == sys_info->exit_y
 		&& sys_info->p_status.x == sys_info->exit_x)
@@ -28,7 +28,7 @@ void	print_moves_count(t_data *sys_info)
 	ft_putstr_fd("\n", 1);
 }
 
-void	update_player_status(char next_pos_elem, t_data *sys_info)
+static void	update_player_status(char next_pos_elem, t_data *sys_info)
 {
 	if (next_pos_elem == 'E' || next_pos_elem == '0')
 		sys_info->p_status.moves_count += 1;

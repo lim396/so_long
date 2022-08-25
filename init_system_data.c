@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	get_exit_pos(t_data *sys_info)
+static void	get_exit_pos(t_data *sys_info)
 {
 	int	i;
 	int	j;
@@ -34,7 +34,7 @@ void	get_exit_pos(t_data *sys_info)
 	}
 }
 
-int	get_total_collect(char **map)
+static int	get_total_collect(char **map)
 {
 	int	i;
 	int	j;
@@ -56,7 +56,7 @@ int	get_total_collect(char **map)
 	return (count);
 }
 
-void	init_graphic(t_data *sys_info, int win_width, int win_height)
+static void	init_graphic(t_data *sys_info, int win_width, int win_height)
 {
 	int	img_width;
 	int	img_height;
@@ -82,7 +82,7 @@ void	init_graphic(t_data *sys_info, int win_width, int win_height)
 		mlx_error_handle(sys_info);
 }
 
-void	init_player_status(t_data *sys_info)
+static void	init_player_status(t_data *sys_info)
 {
 	sys_info->p_status.x = -1;
 	sys_info->p_status.y = -1;

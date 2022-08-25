@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	count_directions_can_go(char **map, t_check_item *data)
+static int	count_directions_can_go(char **map, t_check_item *data)
 {
 	int	count;
 

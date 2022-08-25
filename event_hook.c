@@ -12,7 +12,14 @@
 
 #include "so_long.h"
 
-void	proc_press_wasd(int keycode, t_data *sys_info)
+static int	quit_game(t_data *sys_info)
+{
+	free_map(sys_info->map);
+	destroy_mlx(sys_info);
+	exit(0);
+}
+
+static void	proc_press_wasd(int keycode, t_data *sys_info)
 {
 	if (keycode == KEY_W)
 		move_player(sys_info->p_status.y - 1, sys_info->p_status.x, sys_info);
@@ -24,7 +31,7 @@ void	proc_press_wasd(int keycode, t_data *sys_info)
 		move_player(sys_info->p_status.y, sys_info->p_status.x + 1, sys_info);
 }
 
-int	proc_press_wasd_esc(int keycode, t_data *sys_info)
+static int	proc_press_wasd_esc(int keycode, t_data *sys_info)
 {
 	if (keycode == KEY_ESC)
 		quit_game(sys_info);
@@ -39,13 +46,6 @@ int	proc_press_wasd_esc(int keycode, t_data *sys_info)
 		ft_putstr_fd("Quit game: Press esc or click X mark\n", 1);
 	}
 	return (0);
-}
-
-int	quit_game(t_data *sys_info)
-{
-	free_map(sys_info->map);
-	destroy_mlx(sys_info);
-	exit(0);
 }
 
 void	event_hook(t_data *sys_info)
