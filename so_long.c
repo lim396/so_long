@@ -67,6 +67,7 @@ static void	print_map_error(void)
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd("\e[1;31m===Error===\e[0m\n", 2);
 	ft_putstr_fd("This is invalid map, please read valid map\n", 2);
+	ft_putstr_fd("(or malloc error)\n", 2);
 }
 
 int	main(int argc, char **argv)
